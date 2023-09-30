@@ -1,6 +1,6 @@
 import sys
 import logging
-import logger # have to import logger to make sure errors are logged into txt files
+from src.logger import logging # have to import logger to make sure errors are logged into txt files
 
 def error_message_details(error, error_detail:sys): # error_detail exist inside sys
     _, _, exc_tb = error_detail.exc_info() # Gives info like which file, line, etc error occured 
@@ -21,9 +21,10 @@ class CustomException(Exception):
     def __str__(self):
         return self.error_message
     
-if __name__ == "__main__":
-    try:
-        a=1/0
-    except Exception as e:
-        logging.info("Divided by Zero error.")
-        raise CustomException(e, sys)
+# For testing
+# if __name__ == "__main__":
+#     try:
+#         a=1/0
+#     except Exception as e:
+#         logging.info("Divided by Zero error.")
+#         raise CustomException(e, sys)
