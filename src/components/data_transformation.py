@@ -13,7 +13,7 @@ from src.utils import save_object
 
 @dataclass
 class DataTransformationConfig:
-    preprocessor_obj_file_path=os.path.join('artifacts',"proprocessor.pkl") # Saving transformation pipeline into artifacts
+    preprocessor_obj_file_path=os.path.join('artifacts',"preprocessor.pkl") # Saving transformation pipeline into artifacts
 
 
 class DataTransformation:
@@ -41,7 +41,7 @@ class DataTransformation:
                 steps=[
                     ("imputer", SimpleImputer(strategy="most_frequent")), # Mode for categorical imputing
                     ("ohe", OneHotEncoder()),
-                    ("scaler", StandardScaler(with_mean=False))
+                    ("scaler", StandardScaler(with_mean=False)) 
                 ]
             )
 
