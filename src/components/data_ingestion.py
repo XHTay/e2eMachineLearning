@@ -1,5 +1,10 @@
 import os
 import sys
+
+## To solve src not found 
+# from pathlib import Path
+# sys.path.append(str(Path(__file__).parent.parent))
+
 from src.exception import CustomException # Error message when reading fails
 from src.logger import logging # Logging 
 import pandas as pd
