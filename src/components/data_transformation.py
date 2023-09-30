@@ -75,6 +75,7 @@ class DataTransformation:
 
             numerical_columns = ["writing score", "reading score"]
 
+            # We dont transform target so drop it 
             feature_train_df = df_train.drop(columns=[target], axis=1)
             target_train_df = df_train[target]
             feature_test_df = df_test.drop(columns=[target], axis=1)
@@ -85,6 +86,7 @@ class DataTransformation:
             feature_train_arr = preprocessing_obj.fit_transform(feature_train_df) # Fit scaler with train data
             feature_test_arr = preprocessing_obj.transform(feature_test_df) # Scale test data with scaler fitted with train data
 
+            # Combine target and features after transforming features
             train_arr = np.c_[
                 feature_train_arr, np.array(target_train_df)
             ]

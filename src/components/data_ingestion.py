@@ -9,6 +9,8 @@ from src.exception import CustomException # Error message when reading fails
 from src.logger import logging # Logging 
 from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import DataTransformationConfig
+from src.components.model_trainer import ModelTrainerConfig
+from src.components.model_trainer import ModelTrainer
 
 import pandas as pd
 
@@ -65,4 +67,8 @@ if __name__ == "__main__":
     train_path, test_path = data_ingestor.initiate_data_ingestion()
 
     data_transformation = DataTransformation()
-    data_transformation.initiate_data_transformation(train_path, test_path)
+    train_array, test_array, _ = data_transformation.initiate_data_transformation(train_path, test_path)
+
+    model_trainer = ModelTrainer()
+    r2_score = model_trainer.initiate_model_training(train_array, test_array, _) # Preprocessor path not used here
+    print(r2_score)
