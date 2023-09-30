@@ -7,10 +7,15 @@ import sys
 
 from src.exception import CustomException # Error message when reading fails
 from src.logger import logging # Logging 
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
+
 import pandas as pd
 
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass # New library in python 3.9
+
+
 
 # Inputs required
 # With the dataclass decorator, we don't need init to declare class variables, good for classes where we only define variables and not methods
@@ -55,5 +60,9 @@ class DataIngestion:
             raise CustomException(e, sys)
 
 if __name__ == "__main__":
-    obj = DataIngestion()
-    obj.initiate_data_ingestion()
+    data_ingestor = DataIngestion()
+    data_ingestor.initiate_data_ingestion()
+    train_path, test_path = data_ingestor.initiate_data_ingestion()
+
+    data_transformation = DataTransformation()
+    data_transformation.initiate_data_transformation(train_path, test_path)
